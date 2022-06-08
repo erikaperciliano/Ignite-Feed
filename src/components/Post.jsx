@@ -19,9 +19,13 @@ export function Post() {
                 <p>Hey guys 👋</p>
                 <p>just uploaded another project to my portfolio. It's a project I did at NLW Return, a sensational Rocketseat event.</p>
 
-                <p>👉<a href=''>jane.design/doctorcare</a></p>
+                <p>👉{' '}<a href=''>jane.design/doctorcare</a></p>
 
-                <p><a href=''>#newproject #nlw #rocketseat</a></p>
+                <p>
+                    <a href=''>#newproject</a>{' '}
+                    <a href=''>#nlw </a>{' '}
+                    <a href=''>#rocketseat</a>
+                </p>
             </div>
         </article>
     );
