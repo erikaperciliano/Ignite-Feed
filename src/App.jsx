@@ -5,6 +5,37 @@ import { Sidebar } from './components/Sidebar';
 import styles from './App.module.css';
 import './global.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/erikaperciliano.png',
+      name: 'Erika Perciliano',
+      role: 'Software Developer'
+    },
+    content: [
+      {type: 'paragraph', content: 'Hey guys 👋'},
+      {type: 'paragraph', content: 'just uploaded another project to my portfolio. Its a project I did at NLW Return, a sensational Rocketseat event.'},
+      {type: 'link', content: 'jane.design/doctorcare'},
+    ],
+    publishedAt: new Date('2022-05-03 20:00:00')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'Educator @Rocketseat'
+    },
+    content: [
+      {type: 'paragraph', content: 'Hey guys 👋'},
+      {type: 'paragraph', content: 'just uploaded another project to my portfolio. Its a project I did at NLW Return, a sensational Rocketseat event.'},
+      {type: 'link', content: 'jane.design/doctorcare'},
+    ],
+    publishedAt: new Date('2022-05-10 15:00:00')
+  }
+]
+
 function App() {
   return (
     <>
@@ -13,14 +44,16 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar/>
         <main>
-          <Post
-            author="Erika Perciliano"
-            content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-          />
-          <Post
-            author="Marcelo Sanches"
-            content="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-          />
+         {posts.map(post => {
+          return (
+            <Post
+              key={post.id}
+              author={post.author}
+              content={post.content}
+              publishedAt={post.publishedAt}
+            />
+          )
+         })}
         </main>
       </div>
     </>
