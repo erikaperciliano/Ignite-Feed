@@ -1,6 +1,5 @@
 import { formatDistanceToNow } from 'date-fns';
 import enUS from 'date-fns/locale/en-US';
-import { Key } from 'phosphor-react';
 import { useState } from 'react';
 
 import { Avatar } from './Avatar';
@@ -29,7 +28,12 @@ export function Post({ author, publishedAt, content }) {
     }
 
     function handleNewCommentChange() {
+        event.target.setCustomValidity('');
         setNewCommentText(event.target.value);
+    }
+
+    function handleNewCommentInvalid() {
+        event.target.setCustomValidity('This field is required!');
     }
 
     function deleteComment(commentToDelete) {
@@ -39,6 +43,8 @@ export function Post({ author, publishedAt, content }) {
 
         setComments(commentsWithoutDeleteOne);
     }
+
+    const isNewCommentEmpty = newCommentText.length === 0;
 
     return(
         <article className={styles.post}>
@@ -74,10 +80,12 @@ export function Post({ author, publishedAt, content }) {
                     placeholder='Leave a comment'
                     value={newCommentText}
                     onChange={handleNewCommentChange}
+                    onInvalid={handleNewCommentInvalid}
+                    required
                 />
 
                 <footer>
-                    <button type="submit">Publish</button>
+                    <button type="submit" disabled={isNewCommentEmpty}>Publish</button>
                 </footer>
             </form>
 
